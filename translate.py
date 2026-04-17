@@ -94,11 +94,10 @@ def get_complement(sequence):
     >>> get_complement('AUGC')
     'UACG'
     """
-    seq_upper = sequence.upper()
     comp_dict = {'A' : 'U', 'C' : 'G', 'G' : 'C', 'U' : 'A'}
     comp_list = []
-    for character in seq_upper:
-        comp_list.append(comp_dict[character])
+    for character in sequence:
+        comp_list.append(comp_dict[character.upper()])
     comp_seq = "".join(comp_list)
     return comp_seq
 
@@ -115,7 +114,13 @@ def reverse_and_complement(sequence):
     >>> reverse_and_complement('AUGC')
     'GCAU'
     """
-    pass
+    comp_dict = {'A' : 'U', 'C' : 'G', 'G' : 'C', 'U' : 'A'}
+    comp_list = []
+    for character in sequence:
+        comp_list.append(comp_dict[character.upper()])
+    comp_seq = "".join(comp_list)
+    comp_seq_rev = comp_seq[ : :-1]
+    return comp_seq_rev
 
 def get_longest_peptide(rna_sequence, genetic_code):
     """Get the longest peptide encoded by an RNA sequence.
