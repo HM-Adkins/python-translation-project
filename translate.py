@@ -81,7 +81,19 @@ def get_all_translations(rna_sequence, genetic_code):
         A list of strings; each string is an sequence of amino acids encoded by
         `rna_sequence`.
     """
-    pass
+    rna_seq_upper = rna_sequence.upper()
+    if len(rna_seq_upper) < 3:
+        return ""
+    else:
+        amino_seq_list = []
+        for element in range(len(rna_seq_upper)-2):
+            codon = rna_seq_upper[element:element+3]
+            if codon == 'AUG':
+                amino_seq = translate_sequence(rna_seq_upper[element:],
+                                               genetic_code)
+                if amino_seq:
+                    amino_seq_list.append(amino_seq)
+        return amino_seq_list
 
 
 def get_reverse(sequence):
