@@ -28,7 +28,23 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-    pass
+    if rna_sequence < 3:
+        break   
+    elif genetic_code[rna_sequence[0:3]] == '*':
+        break
+    else:
+        x = range(0, len(rna_seq), 3)
+        codon_list = []
+        amino_seq_list = []
+        for element in x:
+            codon_list.append(rna_seq[element:element+3])
+        for element in codon_list:
+            amino_seq_list.append(genetic_code[element])
+            if genetic_code[element] == '*':
+                break
+        amino_seq = "".join(amino_seq_list)
+        return amino_seq
+
 
 def get_all_translations(rna_sequence, genetic_code):
     """Get a list of all amino acid sequences encoded by an RNA sequence.
@@ -63,6 +79,7 @@ def get_all_translations(rna_sequence, genetic_code):
     """
     pass
 
+
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
 
@@ -82,6 +99,7 @@ def get_reverse(sequence):
     seq_rev = seq_upper[ : :-1]
     return seq_rev
 
+
 def get_complement(sequence):
     """Get the complement of a `sequence` of nucleotides.
 
@@ -100,6 +118,7 @@ def get_complement(sequence):
         comp_list.append(comp_dict[character.upper()])
     comp_seq = "".join(comp_list)
     return comp_seq
+
 
 def reverse_and_complement(sequence):
     """Get the reversed and complemented form of a `sequence` of nucleotides.
@@ -121,6 +140,7 @@ def reverse_and_complement(sequence):
     comp_seq = "".join(comp_list)
     comp_seq_rev = comp_seq[ : :-1]
     return comp_seq_rev
+
 
 def get_longest_peptide(rna_sequence, genetic_code):
     """Get the longest peptide encoded by an RNA sequence.
@@ -153,7 +173,19 @@ def get_longest_peptide(rna_sequence, genetic_code):
 
 
 if __name__ == '__main__':
-    genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
+    genetic_code = {
+        'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N',
+        'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N',
+        'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P',
+        'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A',
+        'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S',
+        'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G',
+        'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L',
+        'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R',
+        'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F',
+        'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I',
+        'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'
+        }
     rna_seq = ("AUG"
             "UAC"
             "UGG"
