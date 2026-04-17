@@ -28,20 +28,24 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-    if rna_sequence < 3:
-        break   
-    elif genetic_code[rna_sequence[0:3]] == '*':
-        break
+    rna_seq_upper = rna_sequence.upper()
+    if len(rna_seq_upper) < 3:
+        return ""   
+    elif genetic_code[rna_seq_upper[0:3]] == '*':
+        return ""
     else:
-        x = range(0, len(rna_seq), 3)
+        x = range(0, len(rna_seq_upper), 3)
         codon_list = []
         amino_seq_list = []
         for element in x:
-            codon_list.append(rna_seq[element:element+3])
-        for element in codon_list:
-            amino_seq_list.append(genetic_code[element])
-            if genetic_code[element] == '*':
+            if len(rna_seq_upper[element:element+3]) < 3:
                 break
+            codon_list.append(rna_seq_upper[element:element+3])
+        for item in codon_list:
+            if genetic_code[item] == '*':
+                break
+            else:
+                amino_seq_list.append(genetic_code[item])
         amino_seq = "".join(amino_seq_list)
         return amino_seq
 
