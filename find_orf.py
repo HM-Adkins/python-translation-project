@@ -5,7 +5,8 @@ import re
 
 def vet_nucleotide_sequence(sequence):
     """
-    Return None if `sequence` is a valid RNA or DNA sequence, else raise exception. 
+    Return None if `sequence` is a valid RNA or DNA sequence, else raise 
+    exception. 
 
     Parameters
     ----------
@@ -57,8 +58,8 @@ def vet_nucleotide_sequence(sequence):
     # any valid RNA and DNA sequence strings, respectively (and only strings of
     # RNA and DNA bases).
     # Read the docstring above for additional clues.
-    rna_pattern_str = r'AUCG'
-    dna_pattern_str = r'ATCG'
+    rna_pattern_str = r'(?i)(?!(?i)T)[AUCG]*'
+    dna_pattern_str = r'(?i)(?!(?i)U)[ATCG]*'
     ##########################################################################
 
     rna_pattern = re.compile(rna_pattern_str)
