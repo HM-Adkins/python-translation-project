@@ -1,8 +1,8 @@
 #! /usr/bin/env python3
 
+import sys
 import find_orf
 import translate
-
 
 def main():
     import argparse
@@ -70,11 +70,11 @@ def main():
     if not args.stop_codon:
         args.stop_codon = default_stop_codons
 
-    orf = find_first_orf(sequence = sequence,
+    orf = find_orf.find_first_orf(sequence = sequence,
             start_codons = args.start_codon,
             stop_codons = args.stop_codon)
-    translated_orf = translate_sequence(orf, genetic_code)
-    sys.stdout.write('{}\n'.format(orf))
+    translated_orf = translate.translate_sequence(orf, genetic_code)
+    sys.stdout.write('{}\n'.format(translated_orf))
 
 
 if __name__ == '__main__':
