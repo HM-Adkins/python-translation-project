@@ -149,12 +149,8 @@ def reverse_and_complement(sequence):
     >>> reverse_and_complement('AUGC')
     'GCAU'
     """
-    comp_dict = {'A' : 'U', 'C' : 'G', 'G' : 'C', 'U' : 'A'}
-    comp_list = []
-    for character in sequence:
-        comp_list.append(comp_dict[character.upper()])
-    comp_seq = "".join(comp_list)
-    comp_seq_rev = comp_seq[ : :-1]
+    seq_rev = get_reverse(sequence)
+    comp_seq_rev = get_complement(seq_rev)
     return comp_seq_rev
 
 
